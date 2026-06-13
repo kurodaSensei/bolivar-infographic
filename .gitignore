@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+.nuxt
+.output
+.env
+.env.*
+!.env.example
+dist
+.vercel
+*.log
+
+# Claude Code local settings (user-specific, no se commiteen)
+.claude/settings.local.json
+

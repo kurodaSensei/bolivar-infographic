@@ -1,0 +1,13 @@
+{
+  "countries": [
+    { "code": "co", "flag": "🇨🇴", "name": "Colombia",  "retained": 62, "note": "Inflación acumulada ~62% (2007-2024)" },
+    { "code": "pe", "flag": "🇵🇪", "name": "Perú",      "retained": 67, "note": "Política monetaria estable (BCRP)" },
+    { "code": "br", "flag": "🇧🇷", "name": "Brasil",    "retained": 55, "note": "Inflación moderada, política fiscal variable" },
+    { "code": "mx", "flag": "🇲🇽", "name": "México",    "retained": 51, "note": "Devaluación del peso sostenida" },
+    { "code": "cl", "flag": "🇨🇱", "name": "Chile",     "retained": 64, "note": "Estabilidad hasta crisis 2019-2021" },
+    { "code": "us", "flag": "🇺🇸", "name": "EE.UU.",    "retained": 71, "note": "Inflación baja histórica, subida 2021-2023" },
+    { "code": "de", "flag": "🇩🇪", "name": "Alemania",  "retained": 69, "note": "Zona euro — inflación estructuralmente baja" },
+    { "code": "ar", "flag": "🇦🇷", "name": "Argentina", "retained": 8,  "note": "Hiperinflación recurrente, crisis 2018 y 2023" },
+    { "code": "zw", "flag": "🇿🇼", "name": "Zimbabwe",  "retained": 3,  "note": "Hiperinflación 2007-2009, caso paralelo" }
+  ]
+}

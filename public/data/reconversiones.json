@@ -1,0 +1,42 @@
+{
+  "reconversiones": [
+    {
+      "id": "bsf",
+      "nombre": "Bolívar Fuerte",
+      "fecha": "2008-01-01",
+      "ceros": 3,
+      "factor": 1000,
+      "descripcion": "Primera reconversión monetaria de Venezuela",
+      "tasa_inicio": 4.3,
+      "tasa_fin": 248000,
+      "unidad": "Bs.F por USD",
+      "gaceta": "Gaceta Oficial N° 38.638"
+    },
+    {
+      "id": "bss",
+      "nombre": "Bolívar Soberano",
+      "fecha": "2018-08-20",
+      "ceros": 5,
+      "factor": 100000,
+      "descripcion": "Segunda reconversión monetaria",
+      "tasa_inicio": 248000,
+      "tasa_fin": 1900000,
+      "unidad": "Bs.S por USD",
+      "gaceta": "Gaceta Oficial N° 41.446"
+    },
+    {
+      "id": "bsd",
+      "nombre": "Bolívar Digital",
+      "fecha": "2021-10-01",
+      "ceros": 6,
+      "factor": 1000000,
+      "descripcion": "Tercera reconversión — eliminación de 6 ceros",
+      "tasa_inicio": 1900000,
+      "tasa_fin": 36,
+      "unidad": "Bs.D por USD",
+      "gaceta": "Gaceta Oficial N° 42.185"
+    }
+  ],
+  "total_ceros": 14,
+  "periodo": "2007-2021"
+}

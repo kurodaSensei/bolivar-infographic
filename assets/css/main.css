@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0a0a0f;
+  --ink-2: #12121c;
+  --ink-3: #1a1a28;
+  --ink-4: #242438;
+  --wire: #2a2a40;
+  --muted: #4a4a68;
+  --dim: #6b6b88;
+  --text: #c8c8e0;
+  --bright: #e8e8f0;
+  --crisis: #e63946;
+  --crisis-dim: rgba(230, 57, 70, 0.12);
+  --crisis-glow: rgba(230, 57, 70, 0.35);
+  --gold: #f4a261;
+  --gold-dim: rgba(244, 162, 97, 0.12);
+  --data: #a8dadc;
+  --data-dim: rgba(168, 218, 220, 0.1);
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 32px;
+  --space-l: 64px;
+  --space-xl: 120px;
+}
+
+/* Scroll-behavior smooth aplica sólo a anclas (scrollIntoView lo hereda).
+   Si lo dejamos en `html`, Chrome interpola la rueda y pelea con GSAP scrub:
+   se siente "pesado" y a veces el scroll se "pega". */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* overscroll-behavior contiene la fricción al final de la página y
+     evita rebotes que disparan ScrollTrigger fuera de rango. */
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: var(--crisis-dim);
+  color: var(--bright);
+}
+
+/* Eyebrow shared utility */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-s);
+}
+
+/* Body shared utility */
+.section-body {
+  max-width: 50ch;
+  color: var(--dim);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+/* Reveal — visible por defecto. GSAP usa `.from()` para empujar desde abajo en
+   intro y vuelve al estado natural; si GSAP no carga, el contenido queda legible. */
+.reveal {
+  will-change: opacity, transform;
+}
+
+/* Section base */
+.section-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-xl) clamp(20px, 5vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Reconv-shared visual tokens */
+.reconv-era {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.reconv-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 52px);
+  color: var(--bright);
+  margin-bottom: 48px;
+  line-height: 1.05;
+}
+.transform-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(14px, 4vw, 40px);
+  margin-bottom: 24px;
+}
+.num-old {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(30px, 6vw, 68px);
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(230, 57, 70, 0.5);
+  text-decoration-thickness: 2px;
+}
+.num-arrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(22px, 3.5vw, 36px);
+  color: var(--muted);
+}
+.num-new {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(44px, 9vw, 100px);
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(244, 162, 97, 0.3);
+}
+.ceros-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  background: var(--crisis-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--crisis);
+}
+.fact-card {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 26px 30px;
+  border: 1px solid var(--wire);
+  border-left: 3px solid var(--gold);
+  border-radius: 12px;
+  background: var(--ink-2);
+}
+.fact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.fact-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 2.2vw, 22px);
+  line-height: 1.55;
+  color: var(--bright);
+}
+.fact-text em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* Grain overlay — versión barata: sin mix-blend-mode (causa repaint full-screen
+   en cada frame durante scroll) y opacidad bajita. Visualmente equivalente sobre
+   un fondo tan oscuro. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Crisis pulse — Hero. Blur 40-60px (no 90px) para que la GPU no haya que
+   recomponer texto grande en cada frame del ease. */
+@keyframes crisis-pulse {
+  0%, 100% { text-shadow: 0 0 35px rgba(230, 57, 70, 0.32); }
+  50% { text-shadow: 0 0 60px rgba(230, 57, 70, 0.55); }
+}
+
+/* Bob — Scroll cue */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); opacity: 0.45; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+/* Float — Hero billete (fallback before GSAP mounts) */
+@keyframes float {
+  0%, 100% { transform: rotate(-2.5deg) translateY(0); }
+  50% { transform: rotate(-2.5deg) translateY(-12px); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

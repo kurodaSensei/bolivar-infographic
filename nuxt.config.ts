@@ -18,10 +18,32 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Infografía interactiva sobre las tres reconversiones monetarias de Venezuela (2008, 2018, 2021).' },
-        { name: 'theme-color', content: '#0a0a0f' }
+        { name: 'description', content: 'Infografía interactiva sobre las tres reconversiones monetarias de Venezuela (2008, 2018, 2021). 14 órdenes de magnitud en 13 años.' },
+        { name: 'theme-color', content: '#0a0a0f' },
+        { name: 'author', content: 'Alfredo Romero' },
+
+        // Open Graph
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: '¿Cuándo tienes ese millón? — Venezuela y sus reconversiones' },
+        { property: 'og:description', content: 'La misma cifra. El mismo país. 14 órdenes de magnitud de diferencia — según el año en que la tengas en la mano.' },
+        { property: 'og:image', content: '/og-image.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Tengo un millón de bolívares. ¿Cuándo? — Infografía sobre las reconversiones monetarias de Venezuela.' },
+        { property: 'og:locale', content: 'es_VE' },
+
+        // Twitter
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: '¿Cuándo tienes ese millón?' },
+        { name: 'twitter:description', content: 'Las tres reconversiones monetarias de Venezuela, contadas con scroll storytelling y data viz.' },
+        { name: 'twitter:image', content: '/og-image.png' }
       ],
       link: [
+        // Favicons — SVG para navegadores modernos, ICO para legacy.
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+
+        // Fonts
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

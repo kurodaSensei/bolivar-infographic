@@ -57,18 +57,9 @@ function runFlip () {
 }
 
 useGSAP(root, (gsap, ScrollTrigger) => {
-  // Reveal del wrap — generoso para que el lector tenga tiempo de leer el
-  // climax-note serif antes de que el flip arranque.
-  gsap.from(root.value.querySelectorAll('.reveal'), {
-    y: 50, duration: 1.3, stagger: 0.18, ease: 'expo.out',
-    immediateRender: false,
-    scrollTrigger: { trigger: root.value, start: 'top 70%', toggleActions: 'play none none none' }
-  })
-
-  // Dispara la animación al entrar al viewport — el millón a 1 ocurre
-  // automáticamente la primera vez que la sección llega al 60% del viewport.
-  // IMPORTANTE: trigger=root.value (no '#r3') porque gsap.context scope=root.value
-  // y querySelector('#r3') no encuentra al propio scope.
+  // Sin reveal — todo el texto está visible desde el render. Solo
+  // mantenemos el trigger del FlipDigit (millón → 1), que es la
+  // pieza signature de toda la infografía.
   ScrollTrigger.create({
     trigger: root.value,
     start: 'top 65%',

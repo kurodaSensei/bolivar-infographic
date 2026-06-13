@@ -69,11 +69,8 @@ body {
   margin-top: 20px;
 }
 
-/* Reveal — visible por defecto. GSAP usa `.from()` para empujar desde abajo en
-   intro y vuelve al estado natural; si GSAP no carga, el contenido queda legible. */
-.reveal {
-  will-change: opacity, transform;
-}
+/* Clase .reveal mantenida como no-op para no tener que limpiar templates
+   inline; los reveals fueron eliminados — el contenido es plano y estático. */
 
 /* Section base */
 .section-wrap {

@@ -1,29 +1,17 @@
 <script setup>
-import { ref } from 'vue'
-
-const root = ref(null)
-
-useGSAP(root, (gsap, ScrollTrigger) => {
-  // Cierre — el más respirado de todos: queremos que "14" aterrice solo,
-  // luego label, luego statement, luego fuentes.
-  gsap.from(root.value.querySelectorAll('.reveal'), {
-    y: 50, duration: 1.5, stagger: 0.28, ease: 'expo.out',
-    immediateRender: false,
-    scrollTrigger: { trigger: root.value, start: 'top 75%', toggleActions: 'play none none none' }
-  })
-})
+// S9 — Cierre. Sin animaciones de entrada.
 </script>
 
 <template>
-  <section id="cierre" ref="root" class="section-wrap cierre">
+  <section id="cierre" class="section-wrap cierre">
     <div class="section-inner" style="text-align:center">
-      <p class="eyebrow reveal" style="margin-bottom:32px">En total</p>
-      <span class="cierre-number reveal">14</span>
-      <span class="cierre-label reveal">órdenes de magnitud · en 13 años</span>
-      <p class="cierre-statement reveal">
+      <p class="eyebrow" style="margin-bottom:32px">En total</p>
+      <span class="cierre-number">14</span>
+      <span class="cierre-label">órdenes de magnitud · en 13 años</span>
+      <p class="cierre-statement">
         Tres reconversiones. Catorce ceros borrados del mapa. Los números hablan solos.
       </p>
-      <div class="sources reveal">
+      <div class="sources">
         <strong>Fuentes:</strong>
         Banco Central de Venezuela (BCV) · CEPAL · FMI World Economic Outlook ·
         DolarToday (series históricas) · Gacetas Oficiales de Venezuela

@@ -1,61 +1,24 @@
 <script setup>
-// S6 — La Máquina del Tiempo. CountUp animado al entrar en viewport.
-import { ref } from 'vue'
+// S6 — La Máquina del Tiempo. Sin reveal ni count-up: el número grande
+// se muestra estático desde el render.
 
-const root = ref(null)
 const TARGET = 1e14 // 100.000.000.000.000
-
-function format (n) {
-  return Math.round(n).toLocaleString('es-VE')
-}
-
-// Default al valor final — si GSAP no llega a animar (rAF throttled, prefers-reduced-motion,
-// device lento), el número correcto se muestra estático sin quedar atorado en mid-animation.
-const display = ref(format(TARGET))
-
-useGSAP(root, (gsap, ScrollTrigger) => {
-  gsap.from(root.value.querySelectorAll('.reveal'), {
-    y: 50, duration: 1.4, stagger: 0.22, ease: 'expo.out',
-    immediateRender: false,
-    scrollTrigger: { trigger: root.value, start: 'top 75%', toggleActions: 'play none none none' }
-  })
-
-  // Count-up de 0 a 1e14 al entrar en viewport.
-  const counter = { v: 0 }
-  ScrollTrigger.create({
-    trigger: root.value,
-    start: 'top 60%',
-    once: true,
-    onEnter: () => {
-      // Reset a 0 justo cuando entra al viewport — si GSAP no progresa luego,
-      // el onComplete del .to() o el siguiente repaint del display.value (al
-      // último valor escrito por onUpdate) deja el número en su sitio.
-      display.value = '0'
-      gsap.to(counter, {
-        v: 1,
-        duration: 3.2,
-        ease: 'expo.out',
-        onUpdate: () => { display.value = format(TARGET * counter.v) },
-        onComplete: () => { display.value = format(TARGET) }
-      })
-    }
-  })
-})
+const display = Math.round(TARGET).toLocaleString('es-VE')
 </script>
 
 <template>
-  <section id="timemachine" ref="root" class="section-wrap timemachine">
+  <section id="timemachine" class="section-wrap timemachine">
     <div class="section-inner" style="text-align:center">
-      <p class="eyebrow reveal" style="margin-bottom:24px">La máquina del tiempo</p>
-      <div class="reveal">
+      <p class="eyebrow" style="margin-bottom:24px">La máquina del tiempo</p>
+      <div>
         <span class="tm-number">{{ display }}</span>
         <span class="tm-unit">bolívares de 2007</span>
       </div>
-      <p class="tm-body reveal">
+      <p class="tm-body">
         Con <strong>1 bolívar digital de hoy</strong>, si viajaras al 2007, tendrías 100 billones de bolívares —
         suficiente para comprar más de <strong>45.000 millones de dólares</strong> a la tasa Cadivi de ese año.
       </p>
-      <p class="tm-punchline reveal">Solo depende de cuándo los tienes</p>
+      <p class="tm-punchline">Solo depende de cuándo los tienes</p>
     </div>
   </section>
 </template>

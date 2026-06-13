@@ -8,15 +8,8 @@ const root = ref(null)
 const chart = ref(null)
 
 useGSAP(root, (gsap, ScrollTrigger) => {
-  // Reveal stagger — más respirado para dar peso a la cita serif.
-  gsap.from(root.value.querySelectorAll('.reveal'), {
-    y: 50, duration: 1.3, stagger: 0.2, ease: 'expo.out',
-    immediateRender: false,
-    scrollTrigger: { trigger: root.value, start: 'top 80%', toggleActions: 'play none none none' }
-  })
-
-  // Scroll scrubbing de la curva D3. El trigger es el wrapper del chart
-  // (descendiente de root.value, encontrable por gsap.context).
+  // Sin reveal — solo el scroll scrubbing de la curva D3, que es storytelling
+  // (la línea se dibuja a la velocidad del dedo del usuario).
   const chartWrap = root.value.querySelector('.chart-wrap')
   ScrollTrigger.create({
     trigger: chartWrap,

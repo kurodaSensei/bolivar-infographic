@@ -1,28 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-
-const root = ref(null)
-
-useGSAP(root, (gsap, ScrollTrigger) => {
-  const ctx = root.value
-  const tl = gsap.timeline({
-    scrollTrigger: { trigger: ctx, start: 'top 70%', toggleActions: 'play none none none' },
-    defaults: { ease: 'power2.out' }
-  })
-
-  const opt = { immediateRender: false, ease: 'expo.out' }
-  tl.from(ctx.querySelector('.reconv-era'), { y: 30, duration: 1.0, ...opt })
-    .from(ctx.querySelector('.reconv-name'), { y: 32, duration: 1.2, ...opt }, '-=.7')
-    .from(ctx.querySelector('.num-old'), { x: -60, duration: 1.0, ...opt }, '-=.5')
-    .from(ctx.querySelector('.num-arrow'), { scale: 0.5, duration: 0.7, ...opt }, '-=.4')
-    .from(ctx.querySelector('.num-new'), { scale: 0.4, duration: 1.0, ease: 'back.out(2.2)', ...opt }, '-=.4')
-    .from(ctx.querySelector('.ceros-badge'), { y: 20, duration: 0.8, ...opt }, '-=.4')
-    .from(ctx.querySelector('.transfer-mock'), { y: 30, duration: 1.1, ...opt }, '-=.3')
-})
+// S4 — Reconversión 2. Sin animaciones de entrada.
 </script>
 
 <template>
-  <section id="r2" ref="root" class="section-wrap r2">
+  <section id="r2" class="section-wrap r2">
     <div class="section-inner" style="text-align:center">
       <p class="reconv-era">Reconversión · 20 de agosto de 2018</p>
       <h2 class="reconv-name">Bolívar Soberano</h2>

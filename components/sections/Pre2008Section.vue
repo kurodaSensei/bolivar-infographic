@@ -1,30 +1,17 @@
 <script setup>
-import { ref } from 'vue'
-
-const root = ref(null)
-
-useGSAP(root, (gsap, ScrollTrigger) => {
-  gsap.from(root.value.querySelectorAll('.reveal'), {
-    y: 50,
-    duration: 1.3,
-    ease: 'expo.out',
-    stagger: 0.18,
-    immediateRender: false,
-    scrollTrigger: { trigger: root.value, start: 'top 80%', toggleActions: 'play none none none' }
-  })
-})
+// S1 — Pre-2008. Texto estático, sin animaciones de entrada.
 </script>
 
 <template>
-  <section id="pre2008" ref="root" class="section-wrap pre2008">
+  <section id="pre2008" class="section-wrap pre2008">
     <div class="section-inner">
-      <p class="eyebrow reveal">Punto de partida · antes de 2008</p>
-      <h2 class="reveal pre-headline">El bolívar original todavía valía algo.</h2>
-      <p class="section-body reveal">
+      <p class="eyebrow">Punto de partida · antes de 2008</p>
+      <h2 class="pre-headline">El bolívar original todavía valía algo.</h2>
+      <p class="section-body">
         A mediados de los 2000 la inflación ya corría, pero el bolívar de siempre aún se contaba en miles.
         Existía la tasa de cambio controlada del gobierno — el Cadivi — que mantenía artificialmente la ilusión de estabilidad.
       </p>
-      <div class="rate-badge reveal">
+      <div class="rate-badge">
         <div class="rate-cell">
           <div class="rate-label">Tasa Cadivi</div>
           <div class="rate-val">2.150 <span class="rate-suffix">Bs</span></div>

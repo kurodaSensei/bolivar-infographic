@@ -7,15 +7,9 @@ import BilleteViz from '~/components/ui/BilleteViz.vue'
 const root = ref(null)
 
 useGSAP(root, (gsap, ScrollTrigger) => {
-  // Intro escalonada y respirada — easing exponencial (entra rápido y se
-  // asienta despacio, sin sensación de "snap"). Stagger generoso para que
-  // cada elemento tenga su momento.
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out', immediateRender: false } })
-  tl.from('.banknote-wrap-outer', { y: 40, duration: 1.6 })
-    .from('.hero-kicker', { y: 24, duration: 1.0 }, '-=1.1')
-    .from('.hero-h1', { y: 28, duration: 1.2 }, '-=.7')
-    .from('.hero-cuando', { y: 40, duration: 1.4 }, '-=.6')
-    .from('.hero-sub', { y: 24, duration: 1.0 }, '-=.5')
+  // Intro reveal eliminada — el texto y el billete están visibles desde el
+  // primer paint. Solo conservamos el efecto de scroll del billete (parallax
+  // + rotación 3D) que es parte del storytelling, no un reveal.
 
   // Una sola timeline atada al scroll para todo el efecto del billete:
   // parallax + rotación 3D + fade-out. Un solo ScrollTrigger = un cálculo

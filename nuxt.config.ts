@@ -14,29 +14,31 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'es' },
-      title: '¿Cuándo tienes ese millón? — Venezuela y sus reconversiones',
+      title: '14 Ceros — Las reconversiones monetarias de Venezuela',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Infografía interactiva sobre las tres reconversiones monetarias de Venezuela (2008, 2018, 2021). 14 órdenes de magnitud en 13 años.' },
+        { name: 'description', content: 'Tengo un millón de bolívares. ¿Cuándo? La historia de las 3 reconversiones monetarias de Venezuela en 14 órdenes de magnitud.' },
         { name: 'theme-color', content: '#0a0a0f' },
         { name: 'author', content: 'Alfredo Romero' },
 
         // Open Graph
         { property: 'og:type', content: 'website' },
-        { property: 'og:title', content: '¿Cuándo tienes ese millón? — Venezuela y sus reconversiones' },
-        { property: 'og:description', content: 'La misma cifra. El mismo país. 14 órdenes de magnitud de diferencia — según el año en que la tengas en la mano.' },
-        { property: 'og:image', content: '/og-image.png' },
+        { property: 'og:site_name', content: '14 Ceros' },
+        { property: 'og:title', content: '14 Ceros' },
+        { property: 'og:description', content: '¿Cuándo tienes ese millón? Infografía interactiva.' },
+        { property: 'og:url', content: 'https://14ceros.vercel.app' },
+        { property: 'og:image', content: 'https://14ceros.vercel.app/og-image.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'Tengo un millón de bolívares. ¿Cuándo? — Infografía sobre las reconversiones monetarias de Venezuela.' },
+        { property: 'og:image:alt', content: 'Tengo un millón de bolívares. ¿Cuándo? — Las reconversiones monetarias de Venezuela.' },
         { property: 'og:locale', content: 'es_VE' },
 
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: '¿Cuándo tienes ese millón?' },
-        { name: 'twitter:description', content: 'Las tres reconversiones monetarias de Venezuela, contadas con scroll storytelling y data viz.' },
-        { name: 'twitter:image', content: '/og-image.png' }
+        { name: 'twitter:title', content: '14 Ceros' },
+        { name: 'twitter:description', content: '¿Cuándo tienes ese millón? Infografía interactiva.' },
+        { name: 'twitter:image', content: 'https://14ceros.vercel.app/og-image.png' }
       ],
       link: [
         // Favicons — SVG para navegadores modernos, ICO para legacy.

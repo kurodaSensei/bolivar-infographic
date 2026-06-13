@@ -1,24 +1,28 @@
 <script setup>
-// S6 — La Máquina del Tiempo. Sin reveal ni count-up: el número grande
-// se muestra estático desde el render.
+// S6 — La Máquina del Tiempo. Reveal stagger; el número grande
+// queda como valor final (sin count-up).
+import { ref } from 'vue'
+
+const root = ref(null)
+useReveal(root)
 
 const TARGET = 1e14 // 100.000.000.000.000
 const display = Math.round(TARGET).toLocaleString('es-VE')
 </script>
 
 <template>
-  <section id="timemachine" class="section-wrap timemachine">
+  <section id="timemachine" ref="root" class="section-wrap timemachine">
     <div class="section-inner" style="text-align:center">
-      <p class="eyebrow" style="margin-bottom:24px">La máquina del tiempo</p>
-      <div>
+      <p class="eyebrow reveal" style="margin-bottom:24px">La máquina del tiempo</p>
+      <div class="reveal" data-d="1">
         <span class="tm-number">{{ display }}</span>
         <span class="tm-unit">bolívares de 2007</span>
       </div>
-      <p class="tm-body">
+      <p class="tm-body reveal" data-d="2">
         Con <strong>1 bolívar digital de hoy</strong>, si viajaras al 2007, tendrías 100 billones de bolívares —
         suficiente para comprar más de <strong>45.000 millones de dólares</strong> a la tasa Cadivi de ese año.
       </p>
-      <p class="tm-punchline">Solo depende de cuándo los tienes</p>
+      <p class="tm-punchline reveal" data-d="3">Solo depende de cuándo los tienes</p>
     </div>
   </section>
 </template>

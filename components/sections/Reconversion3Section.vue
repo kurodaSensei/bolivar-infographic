@@ -6,7 +6,6 @@ import FlipDigit from '~/components/ui/FlipDigit.vue'
 const root = ref(null)
 
 // digits[0] es '1' (millón), 1..6 son los ceros eliminados.
-// (Visualmente: 1 . 000 . 000 — 1 + 6 ceros.)
 const digits = reactive([
   { value: '1', state: 'normal' },
   { value: '0', state: 'normal' },
@@ -38,7 +37,6 @@ function runFlip () {
   reset()
   running.value = true
 
-  // Borra del dígito 6 al 1, dejando el "1" (índice 0) intacto.
   const order = [6, 5, 4, 3, 2, 1]
   order.forEach((idx, i) => {
     timers.push(setTimeout(() => {
@@ -56,15 +54,21 @@ function runFlip () {
   })
 }
 
+// Reveal para textos. El flip-container queda fuera del sistema reveal — es
+// el centerpiece y debe estar visible desde que aparece, no fade-in mientras
+// el flip ya está corriendo.
+useReveal(root)
+
 useGSAP(root, (gsap, ScrollTrigger) => {
-  // Sin reveal — todo el texto está visible desde el render. Solo
-  // mantenemos el trigger del FlipDigit (millón → 1), que es la
-  // pieza signature de toda la infografía.
+  // Trigger sobre el flip-container directamente — garantiza que el flip
+  // arranque exactamente cuando el usuario lo tiene en pantalla, no cuando
+  // el borde superior de la sección apenas asoma.
+  const flipEl = root.value.querySelector('.flip-container')
   ScrollTrigger.create({
-    trigger: root.value,
-    start: 'top 65%',
+    trigger: flipEl,
+    start: 'top 75%',
     once: true,
-    onEnter: () => setTimeout(runFlip, 500)
+    onEnter: () => setTimeout(runFlip, 600)
   })
 })
 </script>
@@ -73,12 +77,12 @@ useGSAP(root, (gsap, ScrollTrigger) => {
   <section id="r3" ref="root" class="section-wrap r3">
     <div class="section-inner" style="text-align:center">
       <p class="reconv-era reveal">Reconversión · 1 de octubre de 2021</p>
-      <h2 class="reconv-name reveal">Bolívar Digital</h2>
-      <p class="climax-note reveal">
+      <h2 class="reconv-name reveal" data-d="1">Bolívar Digital</h2>
+      <p class="climax-note reveal" data-d="2">
         El billete de mayor denominación en la historia — 7 meses después de imprimirse, representaba exactamente esto:
       </p>
 
-      <div class="flip-container reveal" aria-live="polite">
+      <div class="flip-container" aria-live="polite">
         <FlipDigit :value="digits[0].value" :state="digits[0].state" :glow="done" />
         <span class="flip-sep">.</span>
         <FlipDigit :value="digits[1].value" :state="digits[1].state" />
@@ -92,13 +96,14 @@ useGSAP(root, (gsap, ScrollTrigger) => {
 
       <button
         class="flip-btn reveal"
+        data-d="3"
         :disabled="running"
         @click="done ? reset() : runFlip()"
       >
         {{ done ? 'REINICIAR' : (running ? 'BORRANDO…' : 'VER LA RECONVERSIÓN →') }}
       </button>
 
-      <p class="climax-stat reveal">
+      <p class="climax-stat reveal" data-d="4">
         <strong>− 6 ceros.</strong> Un millón de bolívares soberanos se convirtió en 1 bolívar digital. El billete con el que comenzamos esta historia valía exactamente 1 Bs.D.
       </p>
     </div>
@@ -147,7 +152,8 @@ useGSAP(root, (gsap, ScrollTrigger) => {
   letter-spacing: 0.18em;
   padding: 10px 24px;
   cursor: pointer;
-  transition: all 0.2s;
+  /* transition específica — `all` peleaba con la transition del .reveal */
+  transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 .flip-btn:hover:not(:disabled) {
   color: var(--gold);

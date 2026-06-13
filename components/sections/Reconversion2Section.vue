@@ -1,24 +1,28 @@
 <script setup>
-// S4 — Reconversión 2. Sin animaciones de entrada.
+// S4 — Reconversión 2. Reveal stagger via IntersectionObserver.
+import { ref } from 'vue'
+
+const root = ref(null)
+useReveal(root)
 </script>
 
 <template>
-  <section id="r2" class="section-wrap r2">
+  <section id="r2" ref="root" class="section-wrap r2">
     <div class="section-inner" style="text-align:center">
-      <p class="reconv-era">Reconversión · 20 de agosto de 2018</p>
-      <h2 class="reconv-name">Bolívar Soberano</h2>
+      <p class="reconv-era reveal">Reconversión · 20 de agosto de 2018</p>
+      <h2 class="reconv-name reveal" data-d="1">Bolívar Soberano</h2>
 
-      <div class="transform-row">
+      <div class="transform-row reveal" data-d="2">
         <span class="num-old">1.000</span>
         <span class="num-arrow">→</span>
         <span class="num-new num-new-sm">0,01</span>
       </div>
 
-      <div class="badge-wrap">
+      <div class="badge-wrap reveal" data-d="3">
         <span class="ceros-badge">− 5 ceros</span>
       </div>
 
-      <div class="transfer-mock">
+      <div class="transfer-mock reveal" data-d="4">
         <div class="transfer-header">
           <div class="transfer-icon" aria-hidden="true">☕</div>
           <div>

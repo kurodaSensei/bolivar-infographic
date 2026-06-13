@@ -73,6 +73,22 @@ useGSAP(root, (gsap, ScrollTrigger) => {
 
 .hero-text { text-align: center; }
 
+/* Intro escalonada CSS — animation-delay coordina la cadencia. forwards
+   mantiene el estado final si el usuario navega y vuelve. */
+.hero-kicker,
+.hero-h1,
+.hero-cuando,
+.hero-sub,
+.scroll-cue {
+  opacity: 0;
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+.hero-kicker  { animation-delay: 0.20s; }
+.hero-h1      { animation-delay: 0.40s; }
+.hero-cuando  { animation-delay: 0.65s; }
+.hero-sub     { animation-delay: 0.95s; }
+.scroll-cue   { animation-delay: 1.30s; }
+
 .hero-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
@@ -101,7 +117,11 @@ useGSAP(root, (gsap, ScrollTrigger) => {
   text-shadow: 0 0 60px var(--crisis-glow);
   display: block;
   margin-bottom: 28px;
-  animation: crisis-pulse 4s ease-in-out infinite;
+  /* Doble animación: intro one-shot + pulse continuo. Coexisten porque animan
+     propiedades distintas (opacity/transform vs text-shadow). */
+  animation:
+    hero-fade-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.65s forwards,
+    crisis-pulse 4s ease-in-out infinite;
 }
 .hero-sub {
   max-width: 42ch;

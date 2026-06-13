@@ -1,17 +1,21 @@
 <script setup>
-// S9 — Cierre. Sin animaciones de entrada.
+// S9 — Cierre.
+import { ref } from 'vue'
+
+const root = ref(null)
+useReveal(root)
 </script>
 
 <template>
-  <section id="cierre" class="section-wrap cierre">
+  <section id="cierre" ref="root" class="section-wrap cierre">
     <div class="section-inner" style="text-align:center">
-      <p class="eyebrow" style="margin-bottom:32px">En total</p>
-      <span class="cierre-number">14</span>
-      <span class="cierre-label">órdenes de magnitud · en 13 años</span>
-      <p class="cierre-statement">
+      <p class="eyebrow reveal" style="margin-bottom:32px">En total</p>
+      <span class="cierre-number reveal" data-d="1">14</span>
+      <span class="cierre-label reveal" data-d="2">órdenes de magnitud · en 13 años</span>
+      <p class="cierre-statement reveal" data-d="3">
         Tres reconversiones. Catorce ceros borrados del mapa. Los números hablan solos.
       </p>
-      <div class="sources">
+      <div class="sources reveal" data-d="4">
         <strong>Fuentes:</strong>
         Banco Central de Venezuela (BCV) · CEPAL · FMI World Economic Outlook ·
         DolarToday (series históricas) · Gacetas Oficiales de Venezuela

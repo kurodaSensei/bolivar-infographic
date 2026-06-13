@@ -1,17 +1,23 @@
 <script setup>
-// S7 — Calculadora. Sin animaciones de entrada.
+// S7 — Calculadora.
+import { ref } from 'vue'
 import Calculadora from '~/components/ui/Calculadora.vue'
+
+const root = ref(null)
+useReveal(root)
 </script>
 
 <template>
-  <section id="calc" class="section-wrap calc">
+  <section id="calc" ref="root" class="section-wrap calc">
     <div class="section-inner">
-      <p class="eyebrow">Herramienta</p>
-      <h2 class="calc-headline">¿Cuánto valía tu plata?</h2>
-      <p class="section-body" style="margin-bottom:36px">
+      <p class="eyebrow reveal">Herramienta</p>
+      <h2 class="calc-headline reveal" data-d="1">¿Cuánto valía tu plata?</h2>
+      <p class="section-body reveal" data-d="2" style="margin-bottom:36px">
         Ingresa un monto en bolívares y el año en que lo tenías. Te mostramos qué equivale en las otras eras y en dólares.
       </p>
-      <Calculadora />
+      <div class="reveal" data-d="3">
+        <Calculadora />
+      </div>
     </div>
   </section>
 </template>

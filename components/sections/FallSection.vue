@@ -7,6 +7,8 @@ import InflationChart from '~/components/ui/InflationChart.vue'
 const root = ref(null)
 const chart = ref(null)
 
+useReveal(root)
+
 useGSAP(root, (gsap, ScrollTrigger) => {
   // Sin reveal — solo el scroll scrubbing de la curva D3, que es storytelling
   // (la línea se dibuja a la velocidad del dedo del usuario).
@@ -27,13 +29,13 @@ useGSAP(root, (gsap, ScrollTrigger) => {
   <section id="fall" ref="root" class="section-wrap fall">
     <div class="section-inner">
       <p class="eyebrow reveal">2008 — 2018</p>
-      <p class="fall-quote reveal">
+      <p class="fall-quote reveal" data-d="1">
         “Y después necesitabas <em>una paca de billetes</em> solo para comprar harina.”
       </p>
-      <div class="reveal">
+      <div class="reveal" data-d="2">
         <InflationChart ref="chart" />
       </div>
-      <p class="section-body reveal" style="margin-top:0">
+      <p class="section-body reveal" data-d="3" style="margin-top:0">
         En 10 años la inflación acumulada superó el 1.000.000%. Una tasa de cambio de 4 bolívares por dólar se convirtió en más de 200.000.
         La misma cantidad de papel, sin el mismo valor.
       </p>

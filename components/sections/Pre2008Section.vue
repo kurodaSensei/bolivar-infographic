@@ -1,17 +1,21 @@
 <script setup>
-// S1 — Pre-2008. Texto estático, sin animaciones de entrada.
+// S1 — Pre-2008. Reveal via IntersectionObserver + CSS.
+import { ref } from 'vue'
+
+const root = ref(null)
+useReveal(root)
 </script>
 
 <template>
-  <section id="pre2008" class="section-wrap pre2008">
+  <section id="pre2008" ref="root" class="section-wrap pre2008">
     <div class="section-inner">
-      <p class="eyebrow">Punto de partida · antes de 2008</p>
-      <h2 class="pre-headline">El bolívar original todavía valía algo.</h2>
-      <p class="section-body">
+      <p class="eyebrow reveal">Punto de partida · antes de 2008</p>
+      <h2 class="pre-headline reveal" data-d="1">El bolívar original todavía valía algo.</h2>
+      <p class="section-body reveal" data-d="2">
         A mediados de los 2000 la inflación ya corría, pero el bolívar de siempre aún se contaba en miles.
         Existía la tasa de cambio controlada del gobierno — el Cadivi — que mantenía artificialmente la ilusión de estabilidad.
       </p>
-      <div class="rate-badge">
+      <div class="rate-badge reveal" data-d="3">
         <div class="rate-cell">
           <div class="rate-label">Tasa Cadivi</div>
           <div class="rate-val">2.150 <span class="rate-suffix">Bs</span></div>

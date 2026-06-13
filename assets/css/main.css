@@ -69,8 +69,35 @@ body {
   margin-top: 20px;
 }
 
-/* Clase .reveal mantenida como no-op para no tener que limpiar templates
-   inline; los reveals fueron eliminados — el contenido es plano y estático. */
+/* Reveal — IntersectionObserver-driven. JS añade .in cuando el elemento entra
+   al viewport (una sola vez, sin re-triggers). La transición la maneja CSS,
+   así que no se puede "trabar a mitad" como ocurría con timelines GSAP.
+   Stagger explícito via data-d="N" (más legible que :nth-child). */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal[data-d="1"] { transition-delay: 80ms; }
+.reveal[data-d="2"] { transition-delay: 160ms; }
+.reveal[data-d="3"] { transition-delay: 240ms; }
+.reveal[data-d="4"] { transition-delay: 320ms; }
+.reveal[data-d="5"] { transition-delay: 400ms; }
+
+/* Hero intro — pure CSS, sin JS. Corre una sola vez al primer paint y deja
+   los elementos en su estado final con `forwards`. Si el usuario navega y
+   vuelve, los elementos quedan donde estaban (no re-disparo). */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* Section base */
 .section-wrap {
@@ -207,12 +234,18 @@ body {
   50% { transform: rotate(-2.5deg) translateY(-12px); }
 }
 
-/* Respect reduced motion */
+/* Respect reduced motion. Forzamos .reveal y los elementos de la intro del
+   Hero a su estado final visible — si no, con transitions deshabilitadas el
+   contenido podría quedar en opacity 0 hasta que JS añada .in. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
